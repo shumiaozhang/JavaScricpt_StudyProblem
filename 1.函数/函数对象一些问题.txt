@@ -1,0 +1,17 @@
+var a =10;
+function fn(a){
+	function a(){
+		}
+	console.log(a);	
+}
+
+fn(12);
+//////////变形后
+function fn(a){      ///a是形参,可看成var = a;
+	var a = 12;   ///先把12赋值给a
+	var a = function(){     //这里有把function(){}赋值给a了
+		}
+	console.log(a);	////所以输出12
+}
+var a =10;
+fn(12);
