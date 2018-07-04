@@ -1,0 +1,29 @@
+<script>
+        // 编写一个数组去重的方法(用函数实现，要求写思路和注释)
+        var arr = [2, 4, 2, 4, 5, 1]; //原数组
+        var str = [arr[0]]; ///创建一个新数组并把元数组的第一个数放入,供下面的比较
+        for (var i = 0; i < arr.length; i++) {
+            var flag = true; //如果为真就往下执行
+            for (var j = 0; j < str.length; j++) {
+                if (str[j] === arr[i]) {
+                    flag = false; //如果新数组与原数组的值相等就为假,退出
+                    break;
+                }
+            }
+            if (flag == true) {
+                str[str.length] = arr[i]; ///吧原数组的值赋给新数组
+            }
+        }
+        console.log(str);
+
+
+        ////第二种方法
+        var arr = [2, 4, 2, 4, 5, 1]; //原数组
+        var news = []; //创建一个新的空数组
+        for (var i = 0; i < arr.length; i++) {
+            if (news.indexOf(arr[i]) == -1) {
+                news.push(arr[i]);
+            }
+        }
+        console.log(news);
+    </script>
