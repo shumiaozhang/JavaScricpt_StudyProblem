@@ -1,0 +1,24 @@
+<body>
+    <img id="pic" src="images/01big.jpg" alt="">
+    <button id="btn">切换</button>
+    <script>
+        // 需求：点击btn，将pic依次切换图片
+        var btn1 = document.getElementById('btn');
+        var pics = document.getElementById('pic');
+        var num = 2; //这里用2因为之前就有一张了
+
+        btn1.onclick = function() {
+            if (num <= 5) {            ////////在这个题要用判断语句,不能用for语句
+
+                pics.src = 'images/0' + num + 'big.jpg';
+                num++;
+
+            } else if (num > 5) { ///这里的效果是让他再次返回第一张循环**这里的思路很重要**
+                num = 1;
+                pics.src = 'images/0' + num + 'big.jpg';
+                num++;    ///这里如果不添加的话,会点击两次第一张图片,因为前面咱们已经默认有一张第一张的图片了
+
+            }
+        };
+    </script>
+</body>
