@@ -1,0 +1,21 @@
+<!-- 点击一个按钮切换图片 -->
+<button id="btn">按钮</button>
+    <img src="" alt="" id="img">
+    <script>
+        var flag = true;
+        var btn = document.getElementById('btn');// 事件源,被触发事件
+        var img = document.getElementById('img');//获取图片元素
+        btn.onclick = function() {
+            if (flag) {
+                img.src = 'a.jpg';
+                btn.innerText = '第一张图片';
+                flag = false;/////当点击第一张图片时变为假才会进入到下一张图片
+
+            } else {
+                img.src = 'b.png';
+                btn.innerText = '第二张图片';
+                flag = true; //为真
+            }
+        };
+    </script>
+///////////整个题的思路是:一个按钮切换两张图片,先设置一个空路径的图片,再设置图片路径,当设置第二个时就把第一个覆盖了
