@@ -1,0 +1,21 @@
+<body>
+    <img id="pic" src="images/01big.jpg" alt="">
+    <button id="btn">切换</button>
+    <script>
+        // 需求：点击btn，将pic依次切换图片
+        var btn1 = document.getElementById('btn');///
+        var pics = document.getElementById('pic');///获取图片元素
+        var num = 2;
+        btn1.onclick = function() { ///用for循环,**思想很重要**
+            if (num < 5) {
+
+                pics.src = 'images/0' + num + 'big.jpg';
+                num++;
+
+            } else { ////含义是图片能再次循环,从第一张开始
+                pics.src = 'images/0' + num + 'big.jpg';
+                num = 1;
+
+            }
+        };
+    </script>
