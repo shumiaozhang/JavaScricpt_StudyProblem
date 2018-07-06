@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div class="box">这是box</div>
+    <div class="box fl a b c d">这是box</div>
+    <div></div>
+    <div class="box">这是box</div>
+    <p class="box3 colorRed"></p>
+    <div class="box">这是box</div>
+    <script>
+        //这个题想要元素类名其中有box类名的,首先获取所有的标签,再依次检测类名,此时有可能一个属性有好几个类名,要去
+        //找,所以此题有两个遍历,第一个为所有的类名,第二个是同一个属性里检测类名是否有box类名.将每个属性的类名全部分割,去判断.
+        var arr = [];
+        //1获取body中所有的标签
+        var tags = document.body.getElementsByTagName('*');
+        //2依次检测类名
+        for (var i = 0; i < tags.length; i++) {
+            //3.检测时为了保证准确,可以将类名分隔为多个部分,再依次检测
+            var classArr = tags[i].className.split(' ');
+            console.log(classArr); //////看一下每个标签里的多个类名,分割之后
+            //4遍历classArr,检测每个部分
+            for (var j = 0; j < classArr.length; j++) {
+                if (classArr[j] === 'box') {
+                    arr.push(tags[i]); ///添加到新数组
+                    break; //减少循环次数
+                }
+            }
+
+        }
+        console.log(arr);
+        ///////目的:找出所有类名为box的元素.
+    </script>
+</body>
+
+</html>
