@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>百度换肤</title>
+    <style>
+        html,
+        body,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            width: 100%;
+            background: url(./images/1.jpg) no-repeat;
+        }
+        
+        .back {
+            width: 100%;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.3);
+            padding-top: 50px;
+            text-align: center;
+        }
+        
+        .back img {
+            width: 200px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+    </script>
+</head>
+
+<body>
+    <div class="back">
+        <img id="pic1" src="images/1.jpg" alt="">
+        <img id="pic2" src="images/2.jpg" alt="">
+        <img id="pic3" src="images/3.jpg" alt="">
+        <img id="pic4" src="images/4.jpg" alt="">
+        <img id="pic5" src="images/5.jpg" alt="">
+    </div>
+    <script>
+        // 1 获取元素
+        var imgs = document.getElementsByTagName('img');
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].onclick = function() {
+                //字符串内书写的任意字符均为普通字符,不会进行变量或属性解析
+                //如果希望在字符串内部添加一个变量或属性时,需要进行字符串拼接
+                document.body.style.backgroundImage = 'url(' + this.src + ')';
+            };
+        }
+    </script>
+
+</body>
+
+</html>
