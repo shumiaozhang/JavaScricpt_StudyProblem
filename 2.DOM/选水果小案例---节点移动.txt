@@ -1,0 +1,79 @@
+<head>
+    <meta charset="UTF-8">
+    <title>小树苗</title>
+    <style>
+        select {
+            width: 150px;
+            background-color: #0099cc;
+        }
+    </style>
+</head>
+
+<body>
+    <!--左边的下拉菜单   multiple：可以让下拉菜单多选 -->
+    <select id="leftSel" size="10" multiple="multiple">
+  <option>苹果</option>
+  <option>香蕉</option>
+  <option>西瓜</option>
+  <option>牛油果</option>
+  <option>西红柿</option>
+</select>
+
+    <!--四个选择按钮位置-->
+    <input type="button" value=">>" id="allRight">
+    <input type="button" value="<<" id="allLeft">
+    <input type="button" value=">" id="right">
+    <input type="button" value="<" id="left">
+
+    <!--右边的下拉菜单-->
+    <select id="rightSel" size="10" multiple="multiple">
+</select>
+    <script>
+        //1获取元素 要获取右边按钮 还有这几个水果
+        var rightBtn = document.getElementById('right'); //获取右边按钮
+        var leftSel = document.getElementById('leftSel');
+        var option = leftSel.getElementsByTagName('option'); ///获取菜名
+        var rightSel = document.getElementById('rightSel'); ///获取右边的边框
+        var leftBtn = document.getElementById('left'); //获取左边按钮
+        //2点击右边事件 往右边移动
+        rightBtn.onclick = function() {
+            for (var i = option.length - 1; i >= 0; i--) {
+                if (option[i].selected) {
+                    rightSel.appendChild(option[i]); ///追加子节点 
+                    //rightSel为父节点(要添加的位置),option[i]为移动的(为添加的新节点)
+                }
+            }
+        };
+        //左边事件,点左边事件为往左边移动,移动的是由之前移动过来的,
+        leftBtn.onclick = function() {
+            var son = rightSel.children; //////指获取右边的子节点结果是伪数组
+            for (var i = 0; i < son.length; i++) {
+                if (son[i].selected) {
+                    leftSel.appendChild(son[i]);
+                    i--; ///因为当第一个值移过去后,马上要移的元素还是原来的下标,而因为前面移走了,会影响后面的元素,下标值是会变的,所以要减一
+                }
+            }
+        };
+        ///////////全部移动
+        var allRight = document.getElementById('allRight'); //获取全部向右移动元素
+        var allLeft = document.getElementById('allLeft'); //获取全部向左移动元素
+        //向右全部移动
+        allRight.onclick = function() {
+            for (var i = 0; i < option.length; i++) {
+                // if (option[i].checked) {
+                rightSel.appendChild(option[i]);
+                i--;
+                // }
+            }
+        };
+        ///////向左移动
+
+        allLeft.onclick = function() {
+            for (var j = 0; j < rightSel.length; j++) {
+                leftSel.appendChild(rightSel[j]);
+                j--;
+            }
+        };
+  </script>
+
+</body>
