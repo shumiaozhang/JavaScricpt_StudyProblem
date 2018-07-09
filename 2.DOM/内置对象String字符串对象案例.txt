@@ -1,0 +1,15 @@
+给你个数组[‘w_y’,’l_ll’,’z_yx’,’y_xb’,’w_rj’,’a_bc’,’f_n’] 输出结果想要[‘fn’,’wrj’,’yxb’,’zyx’,’lll’,’wy’]（反转，删除abc，拆分并截取，拼接） 
+
+ var arr = ['w-y', '1-11', 'z-yx', 'y-xb', 'w-rj', 'a-bc', 'f-n'];
+    var str = [];
+    str = arr.reverse(); //数组反转 
+    // console.log(str); //输出(7)?["f-n", "a-bc", "w-rj", "y-xb", "z-yx", "1-11", "w-y"];
+    str.splice(1, 1); //删除元素abc 
+    for (var i = 0; i < str.length; i++) {
+        // 把数组中的每一个元素(字符串)分隔成数组
+        str[i] = str[i].split("-");
+        // 把数组中的元素(数组)拼接成一个字符串
+        str[i] = str[i].join("");
+        // arr[i] = str[i].split("-").join("");
+    }
+    console.log(str);
