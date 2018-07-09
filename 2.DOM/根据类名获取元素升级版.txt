@@ -1,0 +1,57 @@
+<body>
+    <div></div>
+    <div></div>
+    <div class="box">这是box</div>
+    <div class="box fl a b c d">这是box</div>
+    <div></div>
+    <div class="box">这是box</div>
+    <div id="text">
+        <p class="box3 colorRed"></p>
+        <div class="box a">这是box</div>
+        <div class="box a"></div>
+    </div>
+
+    </div>
+    <script>
+        ////////封装后
+        /////封装时发现应该有个要寻找的类名,应该是个变量设变量为cls,再者还有就是要去那个位置的类名,比如说这次是获取	的body里面的,有可能下次是一个标签里面的
+        //所以也应该有个变量设element
+        function getByClass(cls, element) {
+            element = element || document.body; /// 若不输出时就是body,根据逻辑语句可看出只要输出了就是别的
+            //1先获取body里的所有标签
+            var str = document.body.getElementsByTagName('*');
+            //2 要建立一个新数组,因为等比较之后是否有box有的话赋给新数组
+            var arr = [];
+            //遍历所有的类名//分离类名怕一个属性有好几个类名,将类名分离
+            for (var i = 0; i < str.length; i++) { //循环标签
+                var newstr = str[i].className.split(' '); //每个属性的类名分离通过空格
+                for (var j = 0; j < newstr.length; j++) { ///循环每个属性里的类名
+                    if (newstr[j] == cls) { ///判断每个属性里的类名是否含有box类名
+                        arr.push(str[i]); //若有就把这个标签赋给新数组
+                        break; ///结束减少循环
+                    }
+                }
+            }
+            return arr; //返回arr新数组
+        };
+        //console.log(getByClass('box')); ///指没有输入具体位置,默认是body里面的
+        var tag = document.getElementById('text');
+        console.log(getByClass('box3', tag)); ///指输入了具体位置,要求的是哪个位置的box
+/////////////////////////////////////////////////////////////////////////
+        ///没封装之前
+        //1先获取body里的所有标签
+        var str = document.body.getElementsByTagName('*');
+        //2 要建立一个新数组,因为等比较之后是否有box有的话赋给新数组
+        var arr = [];
+        //遍历所有的类名//分离类名怕一个属性有好几个类名,将类名分离
+        for (var i = 0; i < str.length; i++) { //循环标签
+            var newstr = str[i].className.split(' '); //每个属性的类名分离通过空格
+            for (var j = 0; j < newstr.length; j++) { ///循环每个属性里的类名
+                if (newstr[j] == 'box') { ///判断每个属性里的类名是否含有box类名
+                    arr.push(str[i]); //若有就把这个标签赋给新数组
+                    break; ///结束减少循环
+                }
+            }
+        }
+        console.log(arr);
+</body>
