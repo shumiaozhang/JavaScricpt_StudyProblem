@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        fieldset,
+        img,
+        input,
+        button {
+            border: none;
+            padding: 0;
+            margin: 0;
+            outline-style: none;
+        }
+        
+        ul,
+        ol {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        #box {
+            width: 405px;
+            margin: 200px auto;
+            position: relative;
+        }
+        
+        #txtSearch {
+            float: left;
+            width: 300px;
+            height: 32px;
+            padding-left: 4px;
+            border: 1px solid #b6b6b6;
+            border-right: 0;
+        }
+        
+        #btnSearch {
+            float: left;
+            width: 100px;
+            height: 34px;
+            font: 400 14px/34px "microsoft yahei";
+            color: white;
+            background: #3385ff;
+            cursor: pointer;
+        }
+        
+        #btnSearch:hover {
+            background: #317ef3;
+        }
+        
+        #pop {
+            width: 303px;
+            border: 1px solid #ccc;
+            padding: 0px;
+            position: absolute;
+            top: 34px;
+        }
+        
+        #pop ul li {
+            padding-left: 5px;
+        }
+        
+        #pop ul li:hover {
+            background-color: #CCC;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <input type="text" id="txtSearch">
+        <input type="button" value="百度一下" id="btnSearch">
+        <!-- 放置底部创建的列表结构 -->
+    </div>
+
+    <script>
+        //模拟词库
+        var datas = ["a", "abc", "abbbb", "abxxxx", "xyz", "abcdef", "abzzzz"];
+
+        // 步骤分析：
+        // 1 设置keyup事件
+        // 2 根据当前输入框内容获取到datas中满足条件的词
+        // 3 根据取出的词进行底部结构创建
+        // 4 其他细节处理
+
+        var txt = document.getElementById('txtSearch');
+        var box = document.getElementById('box');
+        txt.onkeyup = function() {
+            //判断输入的值与库的值相等不
+            var arr = [];
+            for (var i = 0; i < datas.length; i++) {
+                if (datas[i].indexOf(this.value) == 0) { //查询data[i]的值与文本输入的值是否相等
+                    arr.push(datas[i]); ///相等则吧这个值加入到新数组中
+                }
+            }
+            /////在创建新结构之前删除旧结构
+            var pop = document.getElementById('pop');
+            //getElementById()在没有获取元素时结果为null
+            if (pop) { ///这里是在输入一次后再进行下次时,要把之前下面的li删除,要不会重叠,为什么放在创建的前面呢,因为要
+                //在每次创建之前都要清楚一次. 即使在第一次输入时,没有获取到元素,但会隐式转换输出结果为null是空的意思
+                box.removeChild(pop);
+            }
+
+            //检测如果没有匹配到单词就不创建结构了
+            if (arr.length == 0) { ///当输入的值长度为0时就会返回,不会创建下面的结构了,要不会出现白条
+                return;
+            }
+            if (txt.value == '') { //当不输入了文本框为0时,下面的列表就隐藏
+                return;
+            }
+            ////进行底部结构创建
+            var div = document.createElement('div'); //创建div
+            box.appendChild(div);
+            div.id = 'pop'; //设置类名为pop
+
+            var ul = document.createElement('ul') //创建ul
+            div.appendChild(ul);
+            //根据arr创建底部的li
+            for (var i = 0; i < arr.length; i++) {
+                var li = document.createElement('li');
+                ul.appendChild(li);
+                li.innerText = arr[i];
+            };
+        }
+    </script>
+</body>
+
+</html>
