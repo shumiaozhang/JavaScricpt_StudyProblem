@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            margin: 0 auto;
+            padding: 0px;
+            font-size: 12px;
+            background: url(images/bg.gif) repeat center 36px;
+            text-align: center;
+            background-color: #c30230;
+        }
+        
+        #content {
+            margin: 0 auto;
+            width: 960px;
+            background: url(images/content_bg.jpg) no-repeat left top;
+            height: 627px;
+        }
+        
+        #content .tip1,{
+            position: absolute;
+            width: 227px;
+            left: 300px;
+            top: 100px;
+        }
+        
+        #content .tip1 .tip_h {
+            background: url(images/tip1_h.gif) no-repeat left top;
+        }
+        
+        #content .tip1 .tip_h,{
+            width: 227px;
+            padding-top: 45px;
+            height: 23px;
+            text-align: left;
+            cursor: move;
+        }
+        
+        #content .tip1 .tip_c {
+            background: url(images/tip1_c.gif) repeat-y;
+        }
+        
+        #content .tip1 .tip_c{
+            width: 200px;
+            padding-left: 12px;
+            padding-right: 15px;
+            min-height: 40px;
+            text-align: left;
+            line-height: 20px;
+            max-height: 160px;
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow: hidden;
+        }
+        
+        #content .tip1 .tip_f {
+            background: url(images/tip1_f.gif) no-repeat left top;
+        }
+        
+        #content .tip1 .tip_f,{
+            width: 227px;
+            height: 53px;
+            padding-top: 20px;
+        }
+        
+        #content .close,
+        #content .close2 {
+            float: left;
+            font-size: 12px;
+            cursor: pointer;
+            color: #000000;
+        }
+        
+        .clr {
+            clear: both;
+            overflow: auto;
+            display: block;
+            height: 0px;
+        }
+        
+        #content .icon {
+            float: left;
+            width: 35px;
+            padding-left: 15px;
+            height: 35px;
+            text-align: center;
+        }
+        
+        #content .name {
+            float: right;
+            padding-right: 15px;
+            text-align: right;
+            font-size: 14px;
+            line-height: 35px;
+            color: #C0F;
+        }
+        
+        #content .num {
+            float: left;
+            padding-left: 7px;
+            width: 195px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <div class="tip1" id="cc">
+            <!--整个小页面-->
+            <div class="tip_h" title="双击关闭纸条">
+                <div class="num">第[49568]条 2018-06-17 22:51:52</div>
+                <div class="close" title="关闭纸条">+</div>
+                <div class="clr"></div>
+            </div>
+            <div class="tip_c">
+                赶紧毕业迎娶白富美
+            </div>
+            <div class="tip_f">
+                <div class="icon">
+                    <img src="images/bpic_1.gif" alt="" title="">
+                </div>
+                <div class="name">成真的人</div>
+                <div class="clr"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 需求1  根据开发实际需要，我的字条上的内容是从数据库读取的
+    //动态创建字条，读取内容
+    var zIndex = 0;
+    var data = ['毕业后,日薪过千', '努力让自己过的更好', '变成自己喜欢的样子', '赶紧毕业迎娶白富美', '2018新年愿望、好好锻炼 把自己练的棒棒的 身体健康 吃嘛嘛香。', '2018年我的新年愿望是、这一年你可以单身，这样我就可以追你了。希望可以实现。', '人生最大的愿望就是；吃一碗广告里的泡面。', '2018年最后一个月最后一个愿望：用我身上的十斤肉换个男朋友。', '2018新年愿望、 我希望能找个女朋友……鹅，算了。还是希望世界和平吧。']
+    var tips = document.getElementById('cc'); //获取这个图片
+    var content = document.getElementById('content'); //获取整个大的盒子
+    var tip_c = document.getElementsByClassName('tip_c'); //获取改内容库
+    var tip_h = document.getElementsByClassName('tip_h'); //获取关闭
+    for (var i = 0; i < 10; i++) {
+        var tipes = tips.cloneNode(true); //两个参数,一个是不加参数,只是克隆标签的 第二个是加参数表示深度克隆
+        tipes.id = 'cc' + i; ///给克隆的设置id,因为id不能一样
+        content.appendChild(tipes); //吧克隆的文字移动到content下面
+        //给库的内容设置随机值
+        var index = parseInt(Math.random() * data.length);
+        // 下一步要做的是  模拟数据库里的数据
+        tip_c[i].innerText = data[index];
+        // 第一步完成  用到的知识点是  克隆元素   随机数  数组的索引
+        // 第二步开始   确定坐标 x ()    y ()
+        var x = parseInt(Math.random() * 680 + 300); //设置水平位置  random  取值范围为[0,1)  所以要有后面的加300
+        var y = parseInt(Math.random() * 450); //设置竖直位置
+        tipes.style.left = x + 'px';
+        tipes.style.top = y + 'px';
+        // 第三步   单击鼠标跑上面
+        tipes.onclick = function() {
+            zIndex++; ///叠层
+            this.style.zIndex = zIndex;
+        };
+        // 第四步：双击后，纸条关闭
+        tip_h[i].ondblclick = function() {
+            var s = this.parentNode; ///这里虽然在前面已经获取了一次tip_h的父元素,但没有获取克隆的所以此时要获取那个克隆的
+            // console.log(s);
+            content.removeChild(s);
+
+        };
+    }
+</script>
+
+</html>
