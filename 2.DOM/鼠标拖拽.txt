@@ -1,0 +1,17 @@
+<div id="box"></div>
+    <script>
+        var box = document.getElementById('box'); 
+	box.onmousedown = function(e) {
+            var x = e.clientX - box.offsetLeft;///鼠标到盒子边上的宽度距离
+            var y = e.clientY - box.offsetTop;//鼠标到盒子顶端的距离
+            console.log(x, y); 
+            document.onmousemove = function(e) {
+                box.style.left = e.clientX - x + 'px'; ///盒子到浏览器的距离
+                box.style.top = e.clientY - y + 'px'; //
+                // console.log()
+            };
+            document.onmouseup = function(e) {
+                this.onmousemove = null; //移除事件,当鼠标抬起之后
+            };
+        };
+</script>
