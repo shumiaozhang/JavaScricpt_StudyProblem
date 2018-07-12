@@ -1,0 +1,10 @@
+//解决方式 
+	1.在事件处理程序的参数位置接受一个形参,ie9以下不支持
+	2.ie9以下用Window.event
+<button id='btn'>按钮</button>
+<script>
+	var btn=document.getElementById('btn');
+	btn.onclick=function(e){
+		e = e || Window.event;
+		console.log(e.type);   //type检测触发事件的类型
+	};
