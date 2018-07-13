@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>获取短信验证码</title>
+</head>
+
+<body>
+    <input type="text" id="txt">
+    <input type="button" id="btn" value="点击获取验证码">
+    <script>
+        //    1.要实现短信验证码界面，首先要有一个文本框，旁边是按钮，点击时开始倒计时。
+
+        // 2.先创建文本框和按钮，按钮设置对应的id，然后在js中通过id获取按钮这个元素，对其执行操作。同时应设置倒计时时间以及计时器变量，并使点击发送按钮后倒计时结束前无法继续点击按钮重新发送。
+
+        // 3.倒计时结束后，清除计时器，并使文字改变为“重新发送验证码”，恢复对按钮能操作的功能，同时使倒计时的数从60秒重新开始以便点击后重新倒计时。
+
+
+        var txt = document.getElementById('txt');
+        var btn = document.getElementById('btn');
+        var timer = null;
+
+        var num = 59;
+        btn.onclick = function() {
+            timer = setInterval(fun, 1000); ///延迟时间
+            function fun() { //创建一个函数 延迟时间
+                if (num > 0) {
+                    num--;
+                    btn.value = num + '秒后可以再次获取';
+                    txt.value = '123456';
+                    btn.disabled = true;
+                } else {
+                    clearInterval(timer);
+                    btn.value = '点击获取验证码';
+                    btn.disabled = false;
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>
