@@ -10,6 +10,9 @@
     <input type="text" id="txt">
     <input type="button" id="btn" value="点击获取验证码">
     <script>
+        // 一个文本框，一个按钮。点击按钮后显示‘59秒后可以再次获取’，同时按钮失效，并且每秒时间递减，
+        //等到0秒时按钮恢复点击，内容恢复成点击之前的‘点击获取验证码’并且在点击按钮后的第15秒的时候，
+        //文本框内容自动填充123456。
         //    1.要实现短信验证码界面，首先要有一个文本框，旁边是按钮，点击时开始倒计时。
 
         // 2.先创建文本框和按钮，按钮设置对应的id，然后在js中通过id获取按钮这个元素，对其执行操作。同时应设置倒计时时间以及计时器变量，并使点击发送按钮后倒计时结束前无法继续点击按钮重新发送。
@@ -19,23 +22,27 @@
 
         var txt = document.getElementById('txt');
         var btn = document.getElementById('btn');
-        var timer = null;
-
+        var timer = null; //设置两个定时器
+        var once = null;
         var num = 59;
         btn.onclick = function() {
             timer = setInterval(fun, 1000); ///延迟时间
-            function fun() { //创建一个函数 延迟时间
-                if (num > 0) {
-                    num--;
-                    btn.value = num + '秒后可以再次获取';
-                    txt.value = '123456';
-                    btn.disabled = true;
-                } else {
-                    clearInterval(timer);
+            function fun() { //创建一个函数 延迟 
+                num--;
+                btn.value = num + '秒后可以再次获取';
+                btn.disabled = true; //文本框禁止,true时禁止
+                if (num < 0) {
+                    clearInterval(timer); //清除
                     btn.value = '点击获取验证码';
                     btn.disabled = false;
                 }
             }
+            once = setTimeout(function() { //两种定时器的应用,第一种 timeout 是指多长时间之后开始,只能一次,不消除不会改变
+                //第二种是interval 是指各多少秒刷新一次,不消除不会停止刷新    ///定时器=setTimeout/setInterval,而不是
+                ///定时器.setTimeout/setInterval    
+                txt.value = '123456';
+
+            }, 15000); ///15秒后开始实行这件事情
         };
     </script>
 </body>
