@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body,
+        ul,
+        ol,
+        li,
+        img {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        #box {
+            width: 490px;
+            height: 270px;
+            padding: 5px;
+            position: relative;
+            border: 1px solid #ccc;
+            margin: 100px auto 0;
+        }
+        
+        .ad {
+            width: 490px;
+            height: 270px;
+            /*overflow: hidden;*/
+            position: relative;
+        }
+        
+        #box img {
+            width: 490px;
+        }
+        
+        .ad ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        
+        .ad ol li {
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+            background: #fff;
+            float: left;
+            margin-right: 10px;
+            cursor: pointer;
+            _display: inline;
+        }
+        
+        .ad ol li.current {
+            background: yellow;
+        }
+        
+        .ad ul li {
+            float: left;
+        }
+        
+        .ad ul {
+            position: absolute;
+            top: 0;
+            width: 2940px;
+        }
+        
+        .ad ul li.current {
+            display: block;
+        }
+        
+        #arr {
+            display: none;
+        }
+        
+        #arr span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+        
+        #arr #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="all">
+        <div class="ad">
+            <ul id="imgs">
+                <li><img src="images/1.jpg" /></li>
+                <li><img src="images/2.jpg" /></li>
+                <li><img src="images/3.jpg" /></li>
+                <li><img src="images/4.jpg" /></li>
+                <li><img src="images/5.jpg" /></li>
+            </ul>
+        </div>
+        <div id="arr">
+            <span id="left">&lt;</span>
+            <span id="right">&gt;</span>
+        </div>
+    </div>
+    <script>
+        //获取元素
+        var box = document.getElementById('box'); //大盒子
+        var ad = box.children[0]; //可视区域
+        var imgs = document.getElementById('imgs'); ///ul
+        var arr = box.children[1]; // 
+        var left = arr.children[0];
+        var right = arr.children[1];
+        ///右移动
+        var ulObj = ad.offsetWidth; //可视区域宽度
+        //设置 移入移出效果
+        box.onmouseover = function() { ///进入大盒子才会显示隐藏
+            arr.style.display = 'block';
+        };
+        box.onmouseout = function() {
+            arr.style.display = 'none';
+        };
+        //因为没有按钮了只要两个左右按钮所以不能设置索引值,使用计数法,记录滚出到可视区域外的图片张数。
+        var count = 0;
+
+        right.onclick = function() {
+            if (count >= imgs.children.length - 1) { //li图片的长度
+                return;
+            }
+            count++;
+            move(imgs, -count * ulObj); // 根据count设置ul的运动位置： -count * 图片宽度
+        };
+
+        left.onclick = function() {
+            if (count <= 0) { ///因为之前刚往右移动了,所以count为正值了,要减回去
+                return;
+            }
+            count--;
+            move(imgs, -count * ulObj)
+        };
+
+
+
+
+        function move(element, target) {
+            // 我们将定时器的标识保存到元素的属性(自定义)中，好处：1 多个元素的属性无关 2 一个元素的属性可以多次访问
+            clearInterval(element.timer); // 防止加速
+            element.timer = setInterval(function() {
+                // 1 获取元素当前位置
+                var current = element.offsetLeft;
+                // 2 设置步长公式：(目标位置 - 当前位置) / 10
+                var step = (target - current) / 10;
+                // 设置检测，根据step的正负设置不同的取整方式
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+
+                // 3 套用运动公式：元素的位置(新) = 元素的位置(旧) + 步长
+                current += step;
+                // 4 将新的位置值设置给left属性
+                element.style.left = current + 'px';
+
+                // 5 清除定时器
+                if (current === target) {
+                    clearInterval(element.timer);
+                }
+            }, 20);
+        }
+    </script>
+</body>
+
+</html>
