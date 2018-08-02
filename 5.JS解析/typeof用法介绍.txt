@@ -1,0 +1,33 @@
+<script>
+
+        //typeof 运算符把类型信息当作字符串返回, 结果只能为 number, String, undefined, boolean, object, function
+        //对于数组,对象,null来说,用typeof 都会输出结果为Object ,所以这是typeof 的局限性, 
+        //如果希望获取一个对象是否是数组不,或判断某个变量是否是某个对象的实例则用instanceof  是检测的东西 例如:var num4 = []; 
+        //console.log(num4 instanceof Array); //ture  数组(Array)是对象(Object)的一个子类  结果为true, flase
+        // typeof 运算符返回一个用来表示表达式的数据类型的字符串。
+        //typeof 的运算数如果未定义就会返回undefined
+        //constructor 是检测什么类型的 例如  var arr = [];console.log(arr.constructor); Array 结果为类型
+        
+        var num = 1;
+        console.log(typeof(num));  //number
+        var num1 = '1';
+        console.log(typeof(num1));  //String
+        console.log(typeof(nu));  //undefined  如果未定义会出现undefined
+        var num3 = true;
+        console.log(typeof(num3)); //boolean
+        var num4 = [];
+        var num5 = {};
+        var num6 = function(){};
+        console.log(num4 instanceof Array); //ture
+        console.log(typeof(num4)); //object
+        console.log(typeof(num5)); //object
+        console.log(typeof(num6)); //function
+        console.log(typeof(null)); //Object
+        console.log(typeof(Number));  //function
+        console.log(typeof(toString)); //function
+        var arr = [];
+        console.log(arr.constructor); //Array
+       console.log(toString.call([])); //[Object Array]  toString() 转化成字符串
+        var obj = {}; //将object转化string
+        console.log(obj.toString());//此时调用的是从Object继承来的原始的toString()方法
+    </script>
