@@ -1,0 +1,81 @@
+ ///继承就是更好的数据共享,这里指的是对象与对象之间的共享
+        ///借用构造函数
+        // function People (name, age){
+        //     this.name = name;
+        //     this.age = age;
+        // }  
+        // People.prototype.sayHi=function(){
+        //     cnosole.log('这是sayHi');
+        // };
+        // function Student (name, age, school){
+        //     People.call(this, name, age);
+        //     this.school = school;
+        // }
+        // Student.prototype.sayHi=function(){
+        //     cnosole.log('这是sayHi1');
+        // };
+        // var zs = new People('张三', 19);
+        // var st = new Student('李四', 34, '黑马');
+        // console.log(st);
+        // 这种继承方式称为借用构造函数继承
+            // 好处：可以继承构造函数体中得属性，并且可以传参
+            // 缺点：不能继承原型中得功能
+
+        //原型继承
+        function People (name, age) {
+			this.name = name;
+			this.age = age;
+		}
+		People.prototype.sayHi = function () {
+			console.log('这是sayHi');
+		};
+
+		function Student (school) {
+			this.school = school;
+		}
+		Student.prototype = new People('jack', 21);
+		Student.prototype.constructor = Student;
+		Student.prototype.study = function () {
+			console.log('每天代码1w行');
+		};
+
+
+		// 原型继承
+		//    优点：可以继承原型中得功能
+		//    缺点：虽然可以得到构造函数体中得属性，但是是一个固定值，没用意义
+
+		//  需要注意得点：
+		//   1 由于是通过覆盖方式进行得设置。所以constructor属性被干掉了，需要手动设置
+		//   2 在原型中设置新的功能时，需要放置在继承操作之后。
+
+        
+		var s1 = new Student('黑马程序员');
+		console.log(s1.name, s1.age);
+		s1.sayHi();
+		console.log(s1.constructor);
+        
+        // 组合继承方式组合继承方式
+        function People (name, age) {
+			this.name = name;
+			this.age = age;
+		}
+		People.prototype.sayHi = function () {
+			console.log('这是sayHi');
+		};
+
+		function Student (name, age, school) {
+			People.call(this, name, age);
+			this.school = school;
+		}
+		Student.prototype = new People();
+		Student.prototype.constructor = Student;
+		Student.prototype.study = function () {
+			console.log('每天代码1w行');
+		};
+
+		var s1 = new Student('jack', 18, '黑马程序员');
+		console.log(s1.name, s1.age, s1.school)
+		s1.sayHi();
+		console.log(s1);
+		
+		// 组合继承方式：是将借用构造函数继承和原型继承结合使用得方式，使用非常简便。
