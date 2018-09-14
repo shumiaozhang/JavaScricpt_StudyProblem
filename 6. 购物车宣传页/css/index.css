@@ -1,0 +1,616 @@
+    /* 公共部分 */
+.go{
+    position: fixed;
+    right: 50px;
+    top: 50px;
+    z-index: 999;
+}
+.more{
+    position: fixed;
+    bottom: 80px;
+    right: 70px;
+    z-index: 999;
+    animation: more .5s linear infinite alternate;
+}
+@keyframes more{
+    0%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(10px);
+    }
+}
+.wrapper{
+    width: 900px;
+    height: 600px;
+    position: absolute;
+    left:50%;
+    margin-left: -450px;
+    bottom: 0;
+    /* background: rgba(0, 0, 0, .1); */
+}
+/* 第一页 */
+.section:nth-child(1){
+    background: url("../images/01-bg.png") no-repeat center bottom;
+}
+.section:nth-child(1) .fly{
+    position: absolute;
+    top: 0px;
+    right: -20px;
+    animation: fly .6s linear infinite alternate; 
+                    /* 速度均匀  次数无限   可以逆播放 */
+}
+.section:nth-child(1) .goods{
+    position: absolute;
+    top: 220px;
+    left: 40px;
+}
+.section:nth-child(1) .sofa{
+    position: absolute;
+    top: 150px;
+    left: 170px;
+    animation: fly .8s linear infinite alternate; 
+}
+
+@keyframes fly{
+    0%{
+        transform: translateY(-20px);
+    }
+    100%{
+        transform: translateY(20px);
+    }
+}
+/* 第二页 */
+.section:nth-child(2){
+    background: url("../images/02-bg.png") no-repeat center bottom;
+}
+.section:nth-child(2) .text{
+    width: 361px;
+    height: 26px;
+    position: absolute;
+    left:50%;
+    margin-left: -180px;
+    top:0;
+}
+.section:nth-child(2) .text img:last-child{
+    position: absolute;
+    left:0;
+    top: 0;
+    opacity: 0;
+}
+.section:nth-child(2) .goods {
+    width: 441px;
+    height: 218px;
+    position: absolute;
+    top:50%;
+    margin-top:-130px;
+    left:50%;
+    margin-left:-220px;
+
+    transform: scale(0);
+    transform-origin: right bottom;
+}
+.section:nth-child(2) .search{
+    position: absolute;
+    right: 170px;
+    top: 120px;
+    transform: translate(1200px, 110px);
+    transform-origin: right top;
+}
+.section:nth-child(2) .search img:last-child{
+    position: absolute;
+    left:90px;
+    top: 5px;
+    opacity: 0;
+}
+.section:nth-child(2) .sofa{
+    position: absolute;
+    left:292px;
+    top:134px;
+    opacity:0;
+    transform: scale(0.5);
+    z-index: 999;
+}
+/* 第二页动画 */
+.section:nth-child(2).now .text img:first-child{
+    opacity: 0;
+    transition: all 0.5s linear;   
+}
+.section:nth-child(2).now .text img:last-child{
+    opacity: 1;
+    transition: all 0.5s linear 0.5s;
+}
+.section:nth-child(2).now .search {
+    animation: search1 3s linear forwards;
+}
+.section:nth-child(2).now .search img:last-child{
+    opacity: 1;
+    transition: all 1s linear 1s;
+}
+.section:nth-child(2).now .goods{
+    transform: none;
+    transition: all 1s linear 2s;
+}
+@keyframes search1 {
+    0%{}
+    33.33%{
+        transform: translate(-160px, 110px);
+    }
+    66.67%{
+        transform: translate(-160px, 110px);
+    }
+    100%{
+        transform: scale(0.7);
+    }
+} 
+.section:nth-child(2) .sofa.animated{
+    animation: sofa-2 1s linear;
+}
+@keyframes sofa-2 {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        transform: translate(-90px,700px);
+        opacity: 1;
+    }
+}
+
+/* 第三页布局 */
+.section:nth-child(3){
+    background: url("../images/03-bg.png") no-repeat center bottom;
+}
+.section:nth-child(3) .cart{
+    position: absolute;
+    width: 218px;
+    height: 58px;
+    right:188px;
+    bottom:104px;
+}
+.section:nth-child(3) .cart img:last-child{
+    position: absolute;
+    opacity: 0;
+    left:0;
+    top:0;
+}
+.section:nth-child(3) .change{
+    position: absolute;
+    width: 296px;
+    height: 131px;
+    right:110px;
+    bottom:160px;
+}
+.section:nth-child(3) .change img:last-child{
+    position: absolute;
+    left:0;
+    top:0;
+    opacity: 0;
+}
+.section:nth-child(3) .sofa{
+    position: absolute;
+    /* width: 207px;
+    height: 166px; */
+    left: 210px;
+    top:160px;
+    opacity: 0;
+    z-index: 999;
+}
+/* 动画 */
+.section:nth-child(3).now .sofa{
+    opacity: 1;
+}
+.section:nth-child(3).now .change img:last-child{
+    opacity: 1;
+}
+.section:nth-child(3).now .cart img:last-child{
+    opacity: 1;
+}
+.section:nth-child(3) .sofa.animated{
+    animation: sofa-3 1s linear;
+}
+@keyframes sofa-3 {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        transform: translate(160px, 690px) rotate(15deg);
+        opacity: 1;
+    }
+}
+ 
+/* 第四页 */
+.section:nth-child(4){
+    background: url("../images/04-bg.png") no-repeat center bottom;
+}
+.section:nth-child(4) .cloud{
+    position: absolute;
+    top:-60px;
+    left: 0;
+}
+.section:nth-child(4) .text{
+    position: absolute;
+    width: 429px;
+    height: 31px;
+    left:50%;
+    margin-left: -215px;
+    top:80px;
+}
+.section:nth-child(4) .text img:last-child{
+    position: absolute;
+    top: 0;
+    display: none;
+}
+.section:nth-child(4) .cart{
+    /* position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -203px;
+     */
+
+     width: 407px;
+     height: 346px;
+     position: absolute;
+     left: 50%;
+     top: 200px;
+     margin-left: -203px;
+}
+.section:nth-child(4) .cart img:first-child{
+    position: absolute;
+    left: 0; 
+    top: 0;
+    z-index: 1;
+}
+.section:nth-child(4) .cart img:last-child{
+    position: absolute;
+    /* transform: translate(138px, -375px) rotate(15deg); */
+    /* transform: translate(138px, 375px) rotate(15deg); */
+    left: 140px;
+    top: -50px;
+   
+    opacity: 0;
+}
+.section:nth-child(4) .address{
+    position: absolute;
+    width: 283px;
+    height: 270px;
+    left: 50%;
+    margin-left: -142px;
+    bottom: 200px;
+    display: none;
+}
+.section:nth-child(4) .address img:last-child{
+    position: absolute;
+    top:55px;
+    left:66px;
+    display: none;
+}
+/* 动画 */
+/* 购物车跑 */
+.section:nth-child(4).now .cart {
+    animation: cart-4 2s linear forwards;
+}
+@keyframes cart-4{
+    0%{}
+    100%{
+        transform: translateX(1200px);
+    }
+}
+.section:nth-child(4).now .cart img:last-child{
+    opacity: 1;
+    transform: rotate(15deg);
+}
+/* 云彩跑 */
+.section:nth-child(4).now .cloud{
+    animation: cloud-4 50s linear infinite alternate;
+}
+@keyframes cloud-4{
+    0%{}
+    100%{
+        transform: translateX(1000px);
+    }
+}
+ /* 第五屏 */
+.section:nth-child(5){
+    background: url("../images/05-bg.png");
+
+}
+.section:nth-child(5) .blank img:first-child{
+    position: absolute;
+    top: 200px;
+    z-index: 1001;
+}
+.section:nth-child(5) .blank img:nth-child(2){
+    position: absolute;
+    top: 130px;
+    left: 120px;
+    transform: translateY(80px);
+}
+.section:nth-child(5) .blank img:last-child{
+    position: absolute;
+    top:270px;
+    left: 80px;
+    opacity: 0;
+    z-index: 1000;
+}
+.section:nth-child(5) .wrapper{
+    height: 100%;
+}
+.section:nth-child(5) .mouse{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 205px;
+    height: 100%;
+    overflow: hidden;
+    
+}
+ 
+.section:nth-child(5) .mouse img:nth-child(1){
+    position: absolute;
+    bottom: 240px;
+}
+.section:nth-child(5) .mouse img:nth-child(2){
+    position: absolute;
+    bottom: 240px;
+    opacity: 0;
+}
+.section:nth-child(5) .mouse img:nth-child(3){
+    position: absolute;
+     bottom: 6px; 
+    right: 50px; 
+    transform: translateY(2000px);
+}
+/* 动画 */
+/* 手 */
+.section:nth-child(5).now .mouse img:nth-child(3){
+    transition: all 1s linear;
+    transform: none;
+}
+.section:nth-child(5).now .mouse img:nth-child(2){
+    opacity: 1;
+    transition: all 0.5s 1s;
+}
+/* 沙发 */
+.section:nth-child(5).now .blank img:nth-child(3){
+    animation: sofa-5 1s linear 1s forwards; 
+}
+@keyframes sofa-5{
+    0%{
+    transform: translateY(-700px);
+    opacity: 1;
+    }
+    50%{
+        transform: translateY(-180px);
+        opacity: 1;
+
+    }
+    100%{
+        transform: translateY(60px);
+        opacity: 1;
+    }
+}
+/* 账单 */
+.section:nth-child(5).now .blank img:nth-child(2){
+    transform: translateY(-8px);
+    transition: all 0.5s linear 1.5s;
+}
+.section:nth-child(5).now .blank img:nth-child(3).animated{
+    animation: sofa-5-6 1s linear;
+}
+@keyframes sofa-5-6{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(750px) scale(0.3);
+    }
+}
+/* 第六屏 */
+.section:nth-child(6){
+    background: url("../images/06-bg.png") no-repeat 20% bottom;
+}
+.section:nth-child(6) .cloud{
+    position: absolute;
+    top:-50px;
+    left: 0;
+    animation: cloud-4 80s linear infinite alternate;
+}
+.section:nth-child(6) .cloud img:last-child{
+    position: absolute;
+    top:50px;
+    animation: cloud-4 50s linear infinite alternate;
+}
+/* 车 */
+.section:nth-child(6) .car{
+    position: absolute;
+    bottom: 0;
+}
+.section:nth-child(6) .text{
+    position: absolute;
+    width: 308px;
+    height: 59px;
+    top: 80px;
+    left: 125px;
+}
+.section:nth-child(6) .text img:last-child{
+    position: absolute;
+    top: 0px; 
+    opacity: 0;
+    left: 0;
+}
+.section:nth-child(6) .box {
+    position: absolute;
+    left: 125px;
+    top: 200px;
+    /* transform: translateX(-1200px); */
+    z-index: 1000;
+}
+.section:nth-child(6) .car {
+    position: absolute;
+    left: 125px;
+    bottom: 0;
+    width: 221px;
+    height: 122px;
+    z-index: 1001;
+}
+.section:nth-child(6) .car .seller,
+.section:nth-child(6) .car .buyer{
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    opacity: 0;
+}
+
+.section:nth-child(6) .car .worker{
+    position: absolute;
+    bottom: 0;
+    left: 25px;
+    transform: scale(0);
+    transform-origin: left bottom;
+}
+.section:nth-child(6) .car .say{
+    position: absolute;
+    top: -450px;
+    left: 300px;
+    opacity: 0;
+}
+.section:nth-child(6) .door{
+    width: 106px;
+    height: 150px;
+    position: absolute;
+    right: -35px;
+    bottom: 116px;
+    opacity: 0;
+}
+.section:nth-child(6) .door img:last-child{
+    position: absolute;
+    right: 80px;
+    bottom: 0;
+    transform-origin: right bottom;
+    transform: scale(0);
+}
+/* 动画 */
+/* 盒子 */
+.section:nth-child(6).now .box{
+   animation: box-6 0.5s linear forwards;
+}
+@keyframes box-6{
+    0%{
+        /* transform: translateX(-600px); */
+    }
+    100%{
+        transform: translateY(300px);
+    }
+}
+.section:nth-child(6).now {
+    background-position: 100% bottom;
+    transition: all 2s linear 1s;
+}
+/* 买家地址 */
+.section:nth-child(6).now .text img:last-child{
+    opacity: 1;
+    transition: all 0.5s linear 4.5s; 
+}
+.section:nth-child(6).now .car .seller{
+    opacity: 1;
+    transition: all 0.5s linear 1s;
+}
+.section:nth-child(6).now .car .buyer{
+    opacity: 1;
+    transition: all 0.5s linear 1.5s;
+}
+/* 快递小哥移动 */
+.section:nth-child(6).now .car .worker{
+    transform: none;
+    bottom:115px;
+    left: 150px;
+    transition: transform 0.5s linear 3s,bottom 0.5s linear 3.5s,left 0.5s linear 4s;
+}
+.section:nth-child(6).now .car .say{
+    opacity: 1;
+    transition: all 0.5s linear 5.5s;
+}
+
+/* 门 */
+.section:nth-child(6).now .door{
+    opacity: 1;
+    transition: all 0.5s linear 4.5s;
+}
+/* 顾客 */
+.section:nth-child(6).now .door img:last-child{
+    transform: none;
+    right: 240px;
+    transition: all 1s linear 5s;
+}
+
+/*第七屏布局*/
+.section:nth-child(7){
+    background: url("../images/07-bg.png") no-repeat center bottom;
+}
+.section:nth-child(7) .star{
+    position: absolute;
+    left: 157px;
+    top: 142px;
+}
+.section:nth-child(7) .star img{
+    float: left;
+    margin-right: 6px;
+    display: none;
+}
+.section:nth-child(7) .text{
+    position: absolute;
+    left: 160px;
+    top: 180px;
+    transform-origin: left bottom;
+    transform: scale(0);
+}
+.section:nth-child(7).now .text{
+    animation: text-7 1.5s linear 2.5s forwards;
+}
+@keyframes text-7 {
+    0%{
+
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: none;
+    }
+}
+
+/*第八屏 布局*/
+.section:nth-child(8){
+    background: url("../images/08-bg.png");
+}
+.section:nth-child(8) .btn{
+    width: 389px;
+    height: 160px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -195px;
+}
+.section:nth-child(8) .btn img:last-child{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.section:nth-child(8) .btn:hover img:last-child{
+    opacity: 1;
+}
+.section:nth-child(8) .again{
+    position: absolute;
+    right: 40px;
+    top: 80px;
+}
+.section:nth-child(8) .hand{
+    width: 170px;
+    height: 449px;
+    position: absolute;
+    left: 50%;
+    margin-left: -85px;
+    top: 100px;
+}
